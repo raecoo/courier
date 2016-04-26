@@ -1,8 +1,7 @@
 # Courier
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/courier`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+1. Thread-safe, without resorting to thread-safe class attributes
+2. Convert data into OpenStruct objects, even the nested resources well.
 
 ## Installation
 
@@ -22,7 +21,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+# Create session
+cs = Courier::Session.new(shopify_domain, token: shopify_token)
+# or private app
+cs = Courier::Session.new(shopify_domain, api_key: 'secret', password: 'secte')
+```
+
+```ruby
+# Find resource
+order  = cs.find(:orders, 2983176710)
+# return a OpenStruct object
+order.class # OpenStruct
+order.email # buyer@email.com
+order.customer.default_address.class # Recursive OpenStruct object
+order.customer.default_address.country_code
+# get list without params
+orders = cs.find(:orders)
+orders.count # default 50
+# get list with params
+orders = cs.find(:orders, nil, params: {limit: 5})
+orders.count # apply parameter limit 5
+```
+
+```ruby
+# Update resource
+order = cs.update(:orders, 2983176710, {id: 2983176710, tags: 'new-tag, tag-again'})
+order.tags # 'new-tag, tag-again'
+```
+
 
 ## Development
 
@@ -32,7 +59,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/courier. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/raecoo/courier. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License

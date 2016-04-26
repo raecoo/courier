@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Raecoo Cao"]
   spec.email         = ["raecoo@gmail.com"]
 
-  spec.summary       = "Threadsafe, customizable with Faraday"
+  spec.summary       = "Threadsafe, Faraday Based"
   spec.description   = "Courier is a lightweight gem for accessing the Shopify admin REST web services."
   spec.homepage      = "https://github.com/raecoo/courier"
   spec.license       = "MIT"
