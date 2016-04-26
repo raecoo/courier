@@ -1,7 +1,7 @@
 # Courier
 
-1. Thread-safe, without resorting to thread-safe class attributes
-2. Convert data into OpenStruct objects, even the nested resources well.
+1. Thread-safe, without resorting to thread-safe class attributes.
+2. Convert data into OpenStruct objects, even the nested resources also work well.
 
 ## Installation
 
@@ -25,7 +25,7 @@ Or install it yourself as:
 # Create session
 cs = Courier::Session.new(shopify_domain, token: shopify_token)
 # or private app
-cs = Courier::Session.new(shopify_domain, api_key: 'secret', password: 'secte')
+cs = Courier::Session.new(shopify_domain, api_key: 'secret', password: 'secret')
 ```
 
 ```ruby
@@ -41,7 +41,7 @@ orders = cs.find(:orders)
 orders.count # default 50
 # get list with params
 orders = cs.find(:orders, nil, params: {limit: 5})
-orders.count # apply parameter limit 5
+orders.count # 5
 ```
 
 ```ruby
