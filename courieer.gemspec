@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency("faraday", "~> 0.9.1")
   spec.add_dependency("faraday_middleware", ">= 0")
+  spec.add_dependency("recursive-open-struct", "~> 1.0.1")
 end
