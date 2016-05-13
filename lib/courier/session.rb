@@ -22,16 +22,16 @@ module Courier
       end
     end
 
-    def find(resources, id: nil, params: {})
+    def find(resources, id, params: {})
       resources = resources.to_s
       endpoint = id ? "#{resources}/#{id}.json" : "#{resources}.json"
       response = conn.get(endpoint, params)
       data = []
       if response.status == 200
         data =  if id
-          RecursiveOpenStruct.new(response.body["#{resources.singularize}"])
+          RecursiveOpenStruct.new(response.body["#{resources.singularize}"], recurse_over_arrays: true)
         else
-          response.body["#{resources}"].map {|r| RecursiveOpenStruct.new(r) }
+          response.body["#{resources}"].map {|r| RecursiveOpenStruct.new(r, recurse_over_arrays: true) }
         end
       end
       return data
