@@ -22,7 +22,7 @@ module Courier
       end
     end
 
-    def find(resources, id, params: {})
+    def find(resources, id: nil, params: {})
       resources = resources.to_s
       endpoint = id ? "#{resources}/#{id}.json" : "#{resources}.json"
       response = conn.get(endpoint, params)
