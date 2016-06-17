@@ -39,7 +39,7 @@ module Courier
 
     def update(resources, id, params = {})
       resources = resources.to_s
-      response = conn.put("#{resources}/#{id}.json", {"#{resources.singularize}": params})
+      response = conn.put("#{resources}/#{id}.json", {"#{resources.singularize}" => params})
       data = nil
       if response.status == 200
         data = RecursiveOpenStruct.new(response.body["#{resources.singularize}"])
